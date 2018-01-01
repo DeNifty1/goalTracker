@@ -11,8 +11,8 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('pages.index');
-// });
-
-Route::get('/','GoalsController@index');
+Route::get('/','PagesController@index');
+Route::get('/about', function () {
+    return view('pages.about');
+});
+Route::resource('goals', 'GoalsController');
