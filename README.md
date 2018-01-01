@@ -5,7 +5,7 @@ While this challenge would have been pretty easy for me to do in CodeIgniter, it
 
 ## Technologies to be used
 ### Coding
-- Laravel 
+- Laravel - [Cheatsheet](laravel.md)
   - Laravel migrations
   - Blade templates
   - Eloquent ORM
