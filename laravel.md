@@ -7,6 +7,21 @@
 - Uses Blade template engine
 ### Controllers
 - Directory: `app/Http/Controllers`
+- To pass a value from controller:
+```
+$title= "my Title";
+return view('pages.index', compact('title'));
+OR
+return view('pages.index')->with('title', $title); // in template view this can be refered to with {{$title}} OR <?php echo $title ?>
+```
+- To pass multiple values from controller	
+```
+$data = array(
+  'title' => 'myTitle',
+  'goals' -> ['start', 'finish']
+);
+return view('pages.index')->with($data);  // bit like CI
+```
 ### Routes
 - Directory: routes folder (web.php default of your routes)
 - web.php - default file for all your routes
@@ -70,29 +85,13 @@ $goals = DB::select('SELECT * from goals'); //$goals = Goal::all();
   </ul>
 @endif
 ```
+# Working with JS/CSS
+- getting a stylesheet from assets
+`<link rel="stylesheet" href="{{asset('css/app.css')}}">`
+- minified code comes from resources->assets->sass|js
 
-# Other Stuff to format
-
-to pass a value from controller use syntax:
-$title= "my Title";
-return view('pages.index', compact('title'));
-OR
-return view('pages.index')->with('title', $title); // in template view this can be refered to with {{$title}} OR <?php echo $title ?>
-
-//Multiple vars	
-$data = array(
-  'title' => 'myTitle',
-  'goals' -> ['start', 'finish']
-);
-return view('pages.index')->with($data);  // bit like CI
-
-getting a stylesheet from assets
-<link rel="stylesheet" href="{{asset('css/app.css')}}"
-minified code comes from 
-resources->assets->sass OR js
-
-In order to use sass and compile css run:
-npm install
-npm run dev or prod
-npm run watch ...keeps it building
-** info on this is in package.json
+## In order to use sass and compile css run:
+- npm install
+- npm run dev or prod
+- npm run watch ...keeps it building
+> info on this is in package.json
