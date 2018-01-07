@@ -1,6 +1,8 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Font+Diner|Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Kalam:300,400,600");
 
 // Variables
 @import "variables";
@@ -10,5 +12,8 @@
 
 body {
     min-height: 2000px;
-    padding-top: 40px;
+    padding-top: 60px;
+}
+h1 {
+    font-family: 'Permanent Marker', cursive;
 }

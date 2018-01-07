@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Goal;
 use Illuminate\Http\Request;
+//use Request;
 
 class GoalsController extends Controller
 {
@@ -12,10 +13,11 @@ class GoalsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //$goals = Goal::all();
-        $goals = Goal::orderBy('goalName', 'asc')->paginate(10); //like all with sorting and 10 records per page
+    public function index() {
+        // $goals = Goal::all();
+        // $goals = Goal::orderBy('goalName', 'asc')->paginate(10); //like all with sorting and 10 records per page
+        // $goals = Goal::orderBy('id', 'desc')->get(); // Sorting normally
+        $goals = Goal::latest('created_at')->get(); // Sorting by dates latest|oldest
         return view('goals.index')->with('goals', $goals);
     }
 
@@ -25,7 +27,7 @@ class GoalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return  view('goals.create');
+        return view('goals.create');
     }
 
     /**
@@ -34,9 +36,18 @@ class GoalsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        // Validation Logic
+        $this->validate($request,[
+            'goalName' => 'required'
+        ]);
+        $newGoal = new Goal();
+        $newGoal->goalName = $request->input('goalName');
+        $newGoal->created_at = date("Y-m-d H:i:s");
+        //$newGoal->updated_at =  date("Y-m-d H:i:s");
+        $newGoal->save();
+
+        return redirect('goals')->with('success', 'Goal created.');
     }
 
     /**
@@ -45,8 +56,7 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $goal = Goal::find($id);
         return view('goals.show')->with('goal', $goal);
     }
@@ -57,9 +67,9 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Goal $goal)
-    {
-        //
+    public function edit($id) {
+        $goal = Goal::find($id);
+        return view('goals.edit')->with('goal', $goal);
     }
 
     /**
@@ -69,9 +79,18 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal)
-    {
-        //
+    public function update(Request $request, $id) {
+        // Validation Logic
+        $this->validate($request,[
+            'goalName' => 'required'
+        ]);
+        $goal = Goal::find($id);
+        $goal->goalName = $request->input('goalName');
+        $goal->created_at = date("Y-m-d H:i:s");
+        //$goal->updated_at =  date("Y-m-d H:i:s");
+        $goal->save();
+
+        return redirect('goals')->with('success', 'Goal Updated.');
     }
 
     /**
@@ -80,8 +99,9 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
-    {
-        //
+    public function destroy($id) {
+        $goal = Goal::find($id);
+        $goal->delete();
+        return redirect('goals')->with('success', 'Goal Deleted.');
     }
 }

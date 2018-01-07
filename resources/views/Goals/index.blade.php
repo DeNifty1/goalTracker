@@ -5,11 +5,12 @@
     @if (count($goals) > 0)
     <ul>
         @foreach($goals as $goal)
-            <li><a href="/goals/{{$goal->goalId}}">{{$goal->goalName}}</a></li>
+            <li><a href="/goals/{{$goal->id}}">{{$goal->goalName}}</a></li>
         @endforeach
     </ul>
-    {{$goals->links()}}
+    {{-- $goals->links() Uncomment for pagination --}}
     @else
         <p>No Goals found!</p>
     @endif
+    <a href="/goals/create" class="btn btn-primary" role="button">Add Goal</a>
 @endsection

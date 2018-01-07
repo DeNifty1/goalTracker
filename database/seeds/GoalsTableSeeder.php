@@ -22,7 +22,6 @@ class GoalsTableSeeder extends Seeder
         ]);
         DB::table('goals')->insert([
             'goalName' => 'Learn Laravel framework'
-            
         ]);
     }
 }

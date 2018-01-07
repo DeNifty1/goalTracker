@@ -13,6 +13,7 @@
         @include('partials.navbar')
         <div class="container" id="app">
             <div class="starter-template">
+                @include('partials.messages')
                 @yield('content')
             </div>
         </div><!-- /.container -->
