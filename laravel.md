@@ -41,7 +41,8 @@ Route::get('/','GoalsController@index');
 Route::resource('goals', 'GoalsController');
 ```
 # Artisan
-- `php artisan key:generate` - Generate Key 
+- `php artisan make:auth` - Does all scaffolding for authentication (if using run this at start of project)
+- `php artisan key:generate` - Generate Key (stored in .env file)
 - `php artisan list` - List of Artisan commands
 - `php artisan route:list` - List of all routes
 - `php artisan -V` - Laravel Version

@@ -1,7 +1,7 @@
 # Goal Tracker
-Goal tracking application with milestones, progress tracking, REST API and Echo Show Skill
+Goal tracking application with milestones, progress tracking, ReactJS, REST API and Echo Show Skill
 
-While this challenge would have been pretty easy for me to do in CodeIgniter, it would have only proved I know older technologies. I decided instead to use this as an opportunity to learn some new things that I have been wanting to spend some time with.
+Project to learn some new things that I have been wanting to spend some time with.
 
 ## Technologies to be used
 ### Coding
@@ -9,7 +9,7 @@ While this challenge would have been pretty easy for me to do in CodeIgniter, it
   - Laravel migrations
   - Blade templates
   - Eloquent ORM
-- Vue.js is installed by default but will probably try React.js instead.
+- React.js even though Vue.js is installed by default
 - Alexa skills for the Echo Show 
 - Node.js for Alexa code
 ### Hosting
@@ -19,10 +19,11 @@ While this challenge would have been pretty easy for me to do in CodeIgniter, it
 Task List
 - [ ] Database Schema
 - [ ] Seeding for testing
-- [ ] CRUD Goals
-- [ ] CRUD Milestones
-- [ ] CRUD Progress
-- [ ] CRUD Goal Types
+- [ ] Goals REST calls
+- [ ] Milestones REST calls 
+- [ ] Progress REST calls 
+- [ ] Goal Types REST calls 
+- [ ] Create Front End with React
 - [ ] Create skill to set up goals
 
 
@@ -32,4 +33,5 @@ Task List
 - npm install
 - php artisan key:generate  // This sets APP_KEY in the .env file
 - update .env file with your db settings
-- 
+- php artisan migrate
+- php artisan db:seed
