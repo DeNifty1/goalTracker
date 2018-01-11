@@ -56,8 +56,7 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        $goal = Goal::find($id);
+    public function show(Goal $goal) {
         return view('goals.show')->with('goal', $goal);
     }
 
@@ -67,8 +66,7 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        $goal = Goal::find($id);
+    public function edit(Goal $goal) {
         return view('goals.edit')->with('goal', $goal);
     }
 
