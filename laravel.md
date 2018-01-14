@@ -16,10 +16,10 @@ return view('pages.index')->with('title', $title); // in template view this can 
 ```
 - To pass multiple values from controller	
 ```
-$data = array(
+$data = [
   'title' => 'myTitle',
   'goals' -> ['start', 'finish']
-);
+];
 return view('pages.index')->with($data);  // bit like CI
 ```
 ### Routes
@@ -56,7 +56,9 @@ Route::resource('goals', 'GoalsController');
 - `php artisan migrate` - Runs migration files and puts records in migration table to show it is complete
 - `php artisan make:seeder GoalsTableSeeder` - Creates a file to allow the seeding of the db
 - `php artisan db:seed --class=GoalsTableSeeder` - Runs the seeder code from GoalsTableSeeder.php
-
+- `php artisan migrate:fresh --seed` -Drops all tables, reruns all migrations and then seeds db (useful when you are creating original schema)
+> Note: The file name for a seed file must represent an actual table otherwise it will error out(ie *TABLENAME*TableSeeder.php). The seed file may populate many tables though.
+- `php artisan make:resource Goal` - creating a resource is like making a template for REST APIs
 # Eloquent
 ```
 $goals = Goal::all();

@@ -16,7 +16,9 @@ Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
 
 Route::resource('goals', 'GoalsController');
-//Route::resource('', '');
+Route::resource('milestones', 'MilestonesController');
+Route::resource('types', 'TypesController');
+Route::resource('progresses', 'ProgressesController');
 
 Auth::routes();
 

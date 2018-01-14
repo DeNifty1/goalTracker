@@ -7,26 +7,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">{{config('app.name', 'Goal Tracker')}}</a>
+            <a class="navbar-brand" href="{{ url('/home') }}">{{config('app.name', 'Goal Tracker')}}</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @guest
-                    &nbsp;
-                @else
+                @auth
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Goals <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/goals">Goals</a></li>
-                            <li><a href="#">Milestones</a></li>
-                            <li><a href="#">Progress</a></li>
+                            <li><a href="/home">My Goals</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Everyones</li>
+                            <li><a href="/goals">- Goals</a></li>
+                            <li><a href="/milestones">- Milestones</a></li>
+                            <li><a href="/progresses">- Progress</a></li>
+                            <li><a href="/types">- Types</a></li>
                         </ul>
                     </li>
-                @endguest
+                @endauth
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

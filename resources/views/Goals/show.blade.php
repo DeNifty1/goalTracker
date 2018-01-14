@@ -3,6 +3,8 @@
 @section('content')
     <h1>{{$goal->goalName}}</h1>
     <div class="handwritten">
+        <p>User: {{$goal->user->name}}</p>
+        <p>Type: {{$goal->type->typeName}}</p>
         <p>Created: {{$goal->created_at}}</p>
         <p>Modified: {{$goal->updated_at}}</p>
         <a href="/goals/{{$goal->id}}/edit" class="btn btn-primary" role="button">Edit Goal</a>

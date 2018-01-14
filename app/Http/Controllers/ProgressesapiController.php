@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Goal;
+use App\Progress;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Resources\Goal as GoalResource;
 
-class GoalsapiController extends Controller
+class ProgressesapiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class GoalsapiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return GoalResource::collection( Goal::all() );
-        return GoalResource::collection( Goal::paginate(20) );
+        return Progress::all();
     }
 
     /**
@@ -26,40 +23,40 @@ class GoalsapiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $goal = Goal::create($request->all());
-        return response()->json($goal, 201);
+        $progress = Progress::create($request->all());
+        return response()->json($progress, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Goal  $goal
+     * @param  \App\Progress  $progress
      * @return \Illuminate\Http\Response
      */
-    public function show(Goal $goal) {
-        return new GoalResource($goal);
+    public function show(Progress $progress) {
+        return $progress;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Goal  $goal
+     * @param  \App\Progress  $progress
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal) {
-        $goal->update($request->all());
-        return response()->json($goal, 200);
+    public function update(Request $request, Progress $progress) {
+        $progress->update($request->all());
+        return response()->json($progress, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Goal  $goal
+     * @param  \App\Progress  $progress
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Goal $goal) {
-        $goal->delete();
+    public function destroy( Progress $progress) {
+        $progress->delete();
         return response()->json(null, 204);
     }
 }

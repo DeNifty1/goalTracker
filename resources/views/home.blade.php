@@ -1,23 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <h1>{{$user->name}}'s Goals</h1>
+    @if (count($user->goals) > 0)
+    <ul>
+        @foreach($user->goals as $goal)
+            <li><a href="/goals/{{$goal->id}}">{{$goal->goalName}}</a></li>
+        @endforeach
+    </ul>
+    {{-- $goals->links() Uncomment for pagination --}}
+    @else
+        <p>No Goals found!</p>
+    @endif
+    <a href="/goals/create" class="btn btn-primary" role="button">Add Goal</a>
+    <a href="{{url('api/goals')}}" class="btn btn-primary" role="button">API</a>
 @endsection

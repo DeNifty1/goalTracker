@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Goal;
+use App\Type;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Resources\Goal as GoalResource;
 
-class GoalsapiController extends Controller
+class TypesapiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class GoalsapiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return GoalResource::collection( Goal::all() );
-        return GoalResource::collection( Goal::paginate(20) );
+        return Type::all();
     }
 
     /**
@@ -26,40 +23,40 @@ class GoalsapiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $goal = Goal::create($request->all());
-        return response()->json($goal, 201);
+        $type = Type::create($request->all());
+        return response()->json($type, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Goal  $goal
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Goal $goal) {
-        return new GoalResource($goal);
+    public function show(Type $type) {
+        return $type;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Goal  $goal
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal) {
-        $goal->update($request->all());
-        return response()->json($goal, 200);
+    public function update(Request $request, Type $type) {
+        $type->update($request->all());
+        return response()->json($type, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Goal  $goal
+     * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy( Goal $goal) {
-        $goal->delete();
+    public function destroy( Type $type) {
+        $type->delete();
         return response()->json(null, 204);
     }
 }

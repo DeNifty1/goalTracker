@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Goal;
+use App\Type;
 use Illuminate\Http\Request;
 //use Request;
 
@@ -42,6 +43,8 @@ class GoalsController extends Controller
             'goalName' => 'required'
         ]);
         $newGoal = new Goal();
+        $newGoal->user_id = auth()->user()->id;
+        $newGoal->type_id = 1; //TODO Fix this '1' only for debugging
         $newGoal->goalName = $request->input('goalName');
         $newGoal->created_at = date("Y-m-d H:i:s");
         //$newGoal->updated_at =  date("Y-m-d H:i:s");
@@ -67,7 +70,12 @@ class GoalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Goal $goal) {
-        return view('goals.edit')->with('goal', $goal);
+        $types = Type::pluck('typeName', 'id');
+        $data = [
+            'goal' => $goal,
+            'types' => $types
+        ];
+        return view('goals.edit')->with($data);
     }
 
     /**
@@ -77,13 +85,13 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
+    public function update(Request $request, Goal $goal) {
         // Validation Logic
         $this->validate($request,[
             'goalName' => 'required'
         ]);
-        $goal = Goal::find($id);
         $goal->goalName = $request->input('goalName');
+        $goal->type_id = $request->input('type_id');
         $goal->created_at = date("Y-m-d H:i:s");
         //$goal->updated_at =  date("Y-m-d H:i:s");
         $goal->save();
@@ -97,8 +105,7 @@ class GoalsController extends Controller
      * @param  \App\Goal  $goal
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
-        $goal = Goal::find($id);
+    public function destroy(Goal $goal) {
         $goal->delete();
         return redirect('goals')->with('success', 'Goal Deleted.');
     }

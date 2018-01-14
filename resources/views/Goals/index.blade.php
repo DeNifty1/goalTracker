@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Goals</h1>
+    <h1>Everyones Goals</h1>
     @if (count($goals) > 0)
     <ul>
         @foreach($goals as $goal)
-            <li><a href="/goals/{{$goal->id}}">{{$goal->goalName}}</a></li>
+            <li><a href="/goals/{{$goal->id}}">{{$goal->goalName}} ({{$goal->user->name}})</a></li>
         @endforeach
     </ul>
     {{-- $goals->links() Uncomment for pagination --}}
