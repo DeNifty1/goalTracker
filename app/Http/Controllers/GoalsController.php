@@ -28,7 +28,8 @@ class GoalsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('goals.create');
+        $types = Type::pluck('typeName', 'id');
+        return view('goals.create')->with('types', $types);
     }
 
     /**

@@ -8,5 +8,9 @@ class Progress extends Model {
     protected $fillable = [
         'progressName'
     ];
+    
+    public function goals(){
+        return $this->belongsTo('App\Goal');
+    }
 
 }

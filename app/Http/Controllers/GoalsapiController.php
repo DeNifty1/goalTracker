@@ -15,7 +15,7 @@ class GoalsapiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return GoalResource::collection( Goal::all() );
+        //return GoalResource::collection( Goal::all() );
         return GoalResource::collection( Goal::paginate(20) );
     }
 

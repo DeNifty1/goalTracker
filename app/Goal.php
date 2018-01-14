@@ -15,6 +15,10 @@ class Goal extends Model {
     public function type(){
         return $this->belongsTo('App\Type');
     }
-
-
+    public function milestone(){
+        return $this->hasMany('App\Milestone');
+    }
+    public function progress(){
+        return $this->hasMany('App\Progress');
+    }
 }

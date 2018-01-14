@@ -21,6 +21,8 @@ class Goal extends Resource
             'goalName' => $this->goalName,
             'goalDesc' => $this->goalDesc,
             'type' => $this->type,
+            'startNumber' => $this->startNumber,
+            'endNumber' => $this->endNumber,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
         ];

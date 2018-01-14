@@ -9,8 +9,8 @@ class Milestone extends Model {
         'milestoneName'
     ];
 
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function goals(){
+        return $this->belongsTo('App\Goal');
     }
 
 
